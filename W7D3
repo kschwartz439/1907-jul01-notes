@@ -1,0 +1,14 @@
+Microservices - breaking up the Controller/Services/DAO into multiple pieces (Movies/Directors having their own monolith instead of all together)
+	costs can go down while still scaling
+	if you need more movies due to people only caring about that, you can just add another movies instance
+	they should not have any idea how many other microservices there are
+	Infrastructure services handle piecing back together the services and scaling how many instances of services there are
+		AOP - all of these should be cross-cutting concerns
+		recreate aspects of the JVM now that there are multiple JVMs running for each microservice
+		gateway service (one entrypoint) provides an illusion of dealing with a single application - handles routing - doesn't know what services are available (Zuul)
+		discovery/registry service - provides information to the gateway service for routing (Eureka/Ribbon)
+		configuration service - keeps configs standard across all and new instances
+		monitoring/tracing services - logging connections between all services/users (Ziplein)
+		circuit breaking - exception handling (Hystrix)
+		message broker - handles talking between microservices
+	
