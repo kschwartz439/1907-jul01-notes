@@ -1,1 +1,1 @@
-# 1907-jul01-notes
+These notes can be read with notepad++. I'm not sure about any other programs.
