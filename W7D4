@@ -39,4 +39,35 @@ attach a circuit breaker to the get request of a message broker/get request as a
 BASE
 	BAsic availability
 	Soft state
-	Eventual Consistency
+	Eventual consistency
+	
+-----------------------------------------------------------------------------------------------------------
+
+virtualization (hypervisor)
+	hardware
+		os
+			app
+	
+	to 
+	
+	hardware
+		hypervisor
+			multiple os
+				each can have an app
+	
+	this isn't very elastic
+
+containerization
+	hardware
+		hypervisor
+			os
+				container machine
+					libraries and apps in each container
+	much more elastic
+	container machine keeps all the crashes into the container, leaving the os up
+	libraries are bare-bones to keep the size of them tiny - doesn't need the kernel, for instance
+
+orchestration
+	docker-swarm
+	Borg-> Kubernetes
+		master node talking to kubes that have listeners and docker images
