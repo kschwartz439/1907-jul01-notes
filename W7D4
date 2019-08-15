@@ -1,0 +1,42 @@
+Microservices - every team working together as one team rather than SOA's each team opening up access begrudgingly
+
+gateway service - handles all incoming requests to make it look like one app to the outside world
+	basically a proxy
+	in charge of routing
+		doesn't have a routing index
+	routes to microservices after talking to registry service
+		
+registry service - handles the routing index
+	needs to have all microservices be discovered
+
+microservice (i.e. Director)
+	calls to database from here
+
+request->gateway->registry->gateway->microservice->db->microservice->gateway->response
+
+discovery service - registers microservices into the routing index
+
+monitoring service
+	deatils what's going on in each service
+	can speak to the registry service
+		used to determine whether something is down or not
+		
+configuration service
+	passes properties files to new instances of services when they're brought online
+	can be a separate server
+	
+message broker service
+	could also do this with a get request
+	do it this way with things where having messages be buffered instead of dropping packets is critical
+	has message queues
+	can have settings for how many times a single instance of a microservice will be tried before moving on
+
+client-side load-balancing
+	attach ribbon to a microservice (i.e. movies) to find the best director microservice to talk to
+	
+attach a circuit breaker to the get request of a message broker/get request as a de-facto try/catch block
+
+BASE
+	BAsic availability
+	Soft state
+	Eventual Consistency
